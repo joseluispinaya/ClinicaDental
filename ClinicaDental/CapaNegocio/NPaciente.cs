@@ -32,5 +32,10 @@ namespace CapaNegocio
         {
             return DPaciente.GetInstance().ListaPacientes();
         }
+
+        public Respuesta<List<ETratamiento>> ObtenerTratamientosFiltro(string Busqueda)
+        {
+            return DPaciente.GetInstance().ObtenerTratamientosFiltro(Busqueda);
+        }
     }
 }

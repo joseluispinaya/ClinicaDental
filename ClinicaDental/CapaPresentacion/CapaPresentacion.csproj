@@ -78,13 +78,17 @@
     <Content Include="img\undraw_profile_3.svg" />
     <Content Include="img\undraw_rocket.svg" />
     <Content Include="Inicio.aspx" />
+    <Content Include="jsdev\PageAtencion.js" />
     <Content Include="jsdev\PageCitas.js" />
+    <Content Include="jsdev\PageListaCitas.js" />
     <Content Include="js\sb-admin-2.js" />
     <Content Include="js\sb-admin-2.min.js" />
     <Content Include="js\vistas\chart-bar-demo.js" />
     <Content Include="js\vistas\chart-pie-demo.js" />
     <Content Include="js\vistas\datatables-demo.js" />
+    <Content Include="PageAtencion.aspx" />
     <Content Include="PageCitas.aspx" />
+    <Content Include="PageListaCitas.aspx" />
     <Content Include="vendor\bootstrap\js\bootstrap.bundle.js" />
     <Content Include="vendor\bootstrap\js\bootstrap.bundle.min.js" />
     <Content Include="vendor\bootstrap\js\bootstrap.js" />
@@ -1802,12 +1806,26 @@
     <Compile Include="Inicio.aspx.designer.cs">
       <DependentUpon>Inicio.aspx</DependentUpon>
     </Compile>
+    <Compile Include="PageAtencion.aspx.cs">
+      <DependentUpon>PageAtencion.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PageAtencion.aspx.designer.cs">
+      <DependentUpon>PageAtencion.aspx</DependentUpon>
+    </Compile>
     <Compile Include="PageCitas.aspx.cs">
       <DependentUpon>PageCitas.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="PageCitas.aspx.designer.cs">
       <DependentUpon>PageCitas.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="PageListaCitas.aspx.cs">
+      <DependentUpon>PageListaCitas.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PageListaCitas.aspx.designer.cs">
+      <DependentUpon>PageListaCitas.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

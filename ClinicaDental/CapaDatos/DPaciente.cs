@@ -53,6 +53,8 @@ namespace CapaDatos
                                     NroCi = dr["NroCi"].ToString(),
                                     Nombres = dr["Nombres"].ToString(),
                                     Apellidos = dr["Apellidos"].ToString(),
+                                    FechaNacimiento = Convert.ToDateTime(dr["FechaNacimiento"]).ToString("dd/MM/yyyy"),
+                                    VFechaNacimiento = Convert.ToDateTime(dr["FechaNacimiento"].ToString()),
                                     Telefono = dr["Telefono"].ToString(),
                                     Alergias = dr["Alergias"].ToString()
                                 });
@@ -125,6 +127,54 @@ namespace CapaDatos
             {
                 // Maneja cualquier error inesperado
                 return new Respuesta<List<EPaciente>>()
+                {
+                    Estado = false,
+                    Mensaje = "Ocurrió un error: " + ex.Message,
+                    Data = null
+                };
+            }
+        }
+
+        public Respuesta<List<ETratamiento>> ObtenerTratamientosFiltro(string Busqueda)
+        {
+            try
+            {
+                List<ETratamiento> rptLista = new List<ETratamiento>();
+
+                using (SqlConnection con = ConexionBD.GetInstance().ConexionDB())
+                {
+                    using (SqlCommand comando = new SqlCommand("sp_ObtenerTratamientosFiltro", con))
+                    {
+                        comando.CommandType = CommandType.StoredProcedure;
+                        comando.Parameters.AddWithValue("@Busqueda", Busqueda);
+                        con.Open();
+
+                        using (SqlDataReader dr = comando.ExecuteReader())
+                        {
+                            while (dr.Read())
+                            {
+                                rptLista.Add(new ETratamiento()
+                                {
+                                    IdTratamiento = Convert.ToInt32(dr["IdTratamiento"]),
+                                    Nombre = dr["Nombre"].ToString(),
+                                    Descripcion = dr["Descripcion"].ToString(),
+                                    Precio = Convert.ToDecimal(dr["Precio"])
+                                });
+                            }
+                        }
+                    }
+                }
+                return new Respuesta<List<ETratamiento>>()
+                {
+                    Estado = true,
+                    Data = rptLista,
+                    Mensaje = "Tratamientos obtenidos correctamente"
+                };
+            }
+            catch (Exception ex)
+            {
+                // Maneja cualquier error inesperado
+                return new Respuesta<List<ETratamiento>>()
                 {
                     Estado = false,
                     Mensaje = "Ocurrió un error: " + ex.Message,

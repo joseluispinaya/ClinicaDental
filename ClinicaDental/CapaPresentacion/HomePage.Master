@@ -22,6 +22,11 @@
     <link href="css/sb-admin-2.css" rel="stylesheet">
     <link href="vendor/toastr/toastr.min.css" rel="stylesheet">
     <link href="vendor/sweetalert/sweetalert.css" rel="stylesheet">
+
+    <link rel="stylesheet" href="vendor/datatables/dataTables.bootstrap4.min.css">
+    <link rel="stylesheet" href="vendor/datatables/extensiones/css/responsive.dataTables.min.css">
+    <link rel="stylesheet" href="vendor/datatables/extensiones/css/buttons.dataTables.min.css">
+
     <asp:ContentPlaceHolder ID="head" runat="server">
     </asp:ContentPlaceHolder>
 </head>
@@ -76,7 +81,7 @@
                 <div id="collapseInventario" class="collapse" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <a class="collapse-item" href="PageCitas.aspx">Registrar</a>
-                        <a class="collapse-item" href="#">Productos</a>
+                        <a class="collapse-item" href="PageListaCitas.aspx">Citas</a>
                     </div>
                 </div>
             </li>
@@ -85,12 +90,12 @@
             <li class="nav-item">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseVenta">
                     <i class="fas fa-fw fa-tags"></i>
-                    <span>Ventas</span>
+                    <span>Atencion</span>
                 </a>
                 <div id="collapseVenta" class="collapse" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
-                        <a class="collapse-item" href="#">Nueva Venta</a>
-                        <a class="collapse-item" href="#">Historial Venta</a>
+                        <a class="collapse-item" href="PageAtencion.aspx">Nueva Atencion</a>
+                        <a class="collapse-item" href="#">Historial Atencion</a>
                     </div>
                 </div>
             </li>
@@ -204,6 +209,17 @@
     <script src="vendor/toastr/toastr.min.js"></script>
     <script src="vendor/sweetalert/sweetalert.js"></script>
     <script src="vendor/loadingoverlay/loadingoverlay.min.js"></script>
+
+    <script src="vendor/datatables/jquery.dataTables.min.js"></script>
+    <script src="vendor/datatables/dataTables.bootstrap4.min.js"></script>
+
+    <script src="vendor/datatables/extensiones/js/dataTables.responsive.min.js"></script>
+
+    <script src="vendor/datatables/extensiones/js/dataTables.buttons.min.js"></script>
+    <script src="vendor/datatables/extensiones/js/jszip.min.js"></script>
+    <script src="vendor/datatables/extensiones/js/buttons.html5.min.js"></script>
+    <script src="vendor/datatables/extensiones/js/buttons.print.min.js"></script>
+
     <asp:ContentPlaceHolder ID="footer" runat="server"></asp:ContentPlaceHolder>
 </body>
 

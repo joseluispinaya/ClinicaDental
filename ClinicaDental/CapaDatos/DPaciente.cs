@@ -182,5 +182,53 @@ namespace CapaDatos
                 };
             }
         }
+
+        public Respuesta<List<ETratamiento>> ListaServicios()
+        {
+            try
+            {
+                List<ETratamiento> rptLista = new List<ETratamiento>();
+
+                using (SqlConnection con = ConexionBD.GetInstance().ConexionDB())
+                {
+                    using (SqlCommand comando = new SqlCommand("usp_ObtenerTratamientos", con))
+                    {
+                        comando.CommandType = CommandType.StoredProcedure;
+                        con.Open();
+
+                        using (SqlDataReader dr = comando.ExecuteReader())
+                        {
+                            while (dr.Read())
+                            {
+                                rptLista.Add(new ETratamiento()
+                                {
+                                    IdTratamiento = Convert.ToInt32(dr["IdTratamiento"]),
+                                    Nombre = dr["Nombre"].ToString(),
+                                    Descripcion = dr["Descripcion"].ToString(),
+                                    Precio = Convert.ToDecimal(dr["Precio"]),
+                                    Estado = Convert.ToBoolean(dr["Estado"])
+                                });
+                            }
+                        }
+                    }
+                }
+                return new Respuesta<List<ETratamiento>>()
+                {
+                    Estado = true,
+                    Data = rptLista,
+                    Mensaje = "Tratamientos obtenidos correctamente"
+                };
+            }
+            catch (Exception ex)
+            {
+                // Maneja cualquier error inesperado
+                return new Respuesta<List<ETratamiento>>()
+                {
+                    Estado = false,
+                    Mensaje = "Ocurrió un error: " + ex.Message,
+                    Data = null
+                };
+            }
+        }
     }
 }

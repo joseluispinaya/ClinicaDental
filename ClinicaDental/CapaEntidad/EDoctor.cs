@@ -19,5 +19,6 @@ namespace CapaEntidad
         public bool Estado { get; set; }
         public string FechaRegistro { get; set; }
         public DateTime VFechaRegistro { get; set; }
+        public string FullNombreDr => $"{Nombres} {Apellidos}";
     }
 }

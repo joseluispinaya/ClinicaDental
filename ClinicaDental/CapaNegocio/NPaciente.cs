@@ -23,6 +23,16 @@ namespace CapaNegocio
         }
         #endregion
 
+        public Respuesta<bool> RegistrarPacientes(EPaciente oPaciente)
+        {
+            return DPaciente.GetInstance().RegistrarPacientes(oPaciente);
+        }
+
+        public Respuesta<bool> EditarPacientes(EPaciente oPaciente)
+        {
+            return DPaciente.GetInstance().EditarPacientes(oPaciente);
+        }
+
         public Respuesta<List<EPaciente>> ObtenerPacientesFiltro(string Busqueda)
         {
             return DPaciente.GetInstance().ObtenerPacientesFiltro(Busqueda);

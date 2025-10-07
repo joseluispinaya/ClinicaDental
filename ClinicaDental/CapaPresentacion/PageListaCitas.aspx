@@ -49,10 +49,9 @@
                                     <div id="calendar"></div>
                                 </div>
                             </div>
-                            <%--<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean.</p>--%>
                         </div>
                         <div class="tab-pane fade" id="profile-2" role="tabpanel" aria-labelledby="profile-tab-2">
-                            <div class="row">
+                            <div class="row" id="loadi">
                                 <div class="col-sm-6">
                                     <h6 class="mb-3 font-weight-bold text-primary">Datos del Paciente</h6>
                                     <input type="hidden" value="0" id="txtIdPaciente">
@@ -124,6 +123,62 @@
             </div>
         </div>
     </div>
+
+    <div class="modal fade" id="modalDetalleCi" tabindex="-1" role="dialog" aria-hidden="true" data-backdrop="static">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content" id="loatei">
+                <div class="modal-header">
+                    <h6 id="myTituloprcix">Detalle</h6>
+                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <input type="hidden" value="0" id="txtIdCitaAt">
+                    <div class="row">
+                        <div class="col-sm-12">
+
+                            <div class="form-row">
+                                <div class="form-group col-sm-6">
+                                    <label for="txtNombrePaci">Paciente</label>
+                                    <input type="text" class="form-control form-control-sm" id="txtNombrePaci" disabled>
+                                </div>
+                                <div class="form-group col-sm-6">
+                                    <label for="txtMedicoAt">Medico</label>
+                                    <input type="text" class="form-control form-control-sm" id="txtMedicoAt" disabled>
+                                </div>
+                            </div>
+
+                            <div class="form-row">
+                                <div class="form-group col-sm-4">
+                                    <label for="txtFechCi">Fecha Cita</label>
+                                    <input type="text" class="form-control form-control-sm" id="txtFechCi" disabled>
+                                </div>
+                                <div class="form-group col-sm-4">
+                                    <label for="txtHoraCit">Hora</label>
+                                    <input type="text" class="form-control form-control-sm" id="txtHoraCit" disabled>
+                                </div>
+                                <div class="form-group col-sm-4">
+                                    <label for="txtRegFec">Registrado</label>
+                                    <input type="text" class="form-control form-control-sm" id="txtRegFec" disabled>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="txtComentAtc">Comentario</label>
+                                <input type="text" class="form-control form-control-sm" id="txtComentAtc" disabled>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button id="btnGuardarAtencitt" class="btn btn-primary btn-sm" type="button">Atender</button>
+                    <button class="btn btn-danger btn-sm" type="button" data-dismiss="modal">Cancelar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="footer" runat="server">
     <script src="vendor/timepicker/bootstrap-timepicker.js"></script>
@@ -138,5 +193,6 @@
     <script src="vendor/jquery-ui/jquery-ui.js"></script>
     <script src="vendor/jquery-ui/idioma/datepicker-es.js"></script>
 
-    <script src="jsdev/PageListaCitas.js" type="text/javascript"></script>
+    <script src="jsdev/PageListaCitas.js?v=<%= DateTime.Now.ToString("yyyyMMddHHmmss") %>" type="text/javascript"></script>
+    <%--<script src="jsdev/PageListaCitas.js" type="text/javascript"></script>--%>
 </asp:Content>

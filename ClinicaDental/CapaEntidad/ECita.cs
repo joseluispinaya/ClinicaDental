@@ -19,6 +19,10 @@ namespace CapaEntidad
         public string Estado { get; set; }
         public string FechaRegistro { get; set; }
         public DateTime VFechaRegistro { get; set; }
+
+        public EPaciente RefPaciente { get; set; }
+        public EDoctor RefDoctor { get; set; }
+
         public string Color => Estado == "Confirmada"
             ? "#0061a9"
             : "#ff2301";

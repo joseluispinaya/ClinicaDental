@@ -58,6 +58,12 @@
                     <span>Inicio</span></a>
             </li>
 
+            <li class="nav-item">
+                <a class="nav-link" href="PagePacientes.aspx">
+                    <i class="fas fa-fw fas fa-id-card"></i>
+                    <span>Pecientes</span></a>
+            </li>
+
             <!-- Nav Item - Administración Collapse Menu -->
             <li class="nav-item">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseAdministracion">
@@ -66,8 +72,8 @@
                 </a>
                 <div id="collapseAdministracion" class="collapse" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
-                        <a class="collapse-item" href="#">Usuarios</a>
-                        <a class="collapse-item" href="#">Negocio</a>
+                        <a class="collapse-item" href="PageDoctores.aspx">Doctores</a>
+                        <a class="collapse-item" href="#">Servicios</a>
                     </div>
                 </div>
             </li>
@@ -80,8 +86,8 @@
                 </a>
                 <div id="collapseInventario" class="collapse" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
-                        <a class="collapse-item" href="PageCitas.aspx">Registrar</a>
-                        <a class="collapse-item" href="PageListaCitas.aspx">Citas</a>
+                        <a class="collapse-item" href="PageCitas.aspx">Detalles Citas</a>
+                        <a class="collapse-item" href="PageListaCitas.aspx">Registrar Cita</a>
                     </div>
                 </div>
             </li>

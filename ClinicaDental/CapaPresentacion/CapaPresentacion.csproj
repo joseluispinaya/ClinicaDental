@@ -80,7 +80,9 @@
     <Content Include="Inicio.aspx" />
     <Content Include="jsdev\PageAtencion.js" />
     <Content Include="jsdev\PageCitas.js" />
+    <Content Include="jsdev\PageDoctores.js" />
     <Content Include="jsdev\PageListaCitas.js" />
+    <Content Include="jsdev\PagePacientes.js" />
     <Content Include="js\sb-admin-2.js" />
     <Content Include="js\sb-admin-2.min.js" />
     <Content Include="js\vistas\chart-bar-demo.js" />
@@ -88,7 +90,9 @@
     <Content Include="js\vistas\datatables-demo.js" />
     <Content Include="PageAtencion.aspx" />
     <Content Include="PageCitas.aspx" />
+    <Content Include="PageDoctores.aspx" />
     <Content Include="PageListaCitas.aspx" />
+    <Content Include="PagePacientes.aspx" />
     <Content Include="vendor\bootstrap\js\bootstrap.bundle.js" />
     <Content Include="vendor\bootstrap\js\bootstrap.bundle.min.js" />
     <Content Include="vendor\bootstrap\js\bootstrap.js" />
@@ -1820,12 +1824,26 @@
     <Compile Include="PageCitas.aspx.designer.cs">
       <DependentUpon>PageCitas.aspx</DependentUpon>
     </Compile>
+    <Compile Include="PageDoctores.aspx.cs">
+      <DependentUpon>PageDoctores.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PageDoctores.aspx.designer.cs">
+      <DependentUpon>PageDoctores.aspx</DependentUpon>
+    </Compile>
     <Compile Include="PageListaCitas.aspx.cs">
       <DependentUpon>PageListaCitas.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="PageListaCitas.aspx.designer.cs">
       <DependentUpon>PageListaCitas.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="PagePacientes.aspx.cs">
+      <DependentUpon>PagePacientes.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PagePacientes.aspx.designer.cs">
+      <DependentUpon>PagePacientes.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

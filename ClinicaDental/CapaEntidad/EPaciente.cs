@@ -15,6 +15,7 @@ namespace CapaEntidad
         public string Alergias { get; set; }
         public string FechaRegistro { get; set; }
         public DateTime VFechaRegistro { get; set; }
+        public string FullNombre => $"{Nombres} {Apellidos}";
         public string Edad
         {
             get

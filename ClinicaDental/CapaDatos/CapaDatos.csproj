@@ -43,6 +43,8 @@
   <ItemGroup>
     <Compile Include="ConexionBD.cs" />
     <Compile Include="DAtencionPacie.cs" />
+    <Compile Include="DCita.cs" />
+    <Compile Include="DDoctor.cs" />
     <Compile Include="DPaciente.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

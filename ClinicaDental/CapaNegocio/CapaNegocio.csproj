@@ -42,6 +42,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="NAtencionPacie.cs" />
+    <Compile Include="NCita.cs" />
+    <Compile Include="NDoctor.cs" />
     <Compile Include="NPaciente.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

@@ -29,6 +29,91 @@ namespace CapaDatos
         }
         #endregion
 
+        public Respuesta<bool> RegistrarPacientes(EPaciente oPaciente)
+        {
+            try
+            {
+                bool respuesta = false;
+                using (SqlConnection con = ConexionBD.GetInstance().ConexionDB())
+                {
+                    using (SqlCommand cmd = new SqlCommand("usp_RegistrarPacientes", con))
+                    {
+                        cmd.CommandType = CommandType.StoredProcedure;
+
+                        cmd.Parameters.AddWithValue("@NroCi", oPaciente.NroCi);
+                        cmd.Parameters.AddWithValue("@Nombres", oPaciente.Nombres);
+                        cmd.Parameters.AddWithValue("@Apellidos", oPaciente.Apellidos);
+                        cmd.Parameters.AddWithValue("@FechaNacimiento", oPaciente.VFechaNacimiento);
+                        cmd.Parameters.AddWithValue("@Genero", oPaciente.Genero);
+                        cmd.Parameters.AddWithValue("@Telefono", oPaciente.Telefono);
+                        cmd.Parameters.AddWithValue("@Alergias", oPaciente.Alergias);
+
+                        SqlParameter outputParam = new SqlParameter("@Resultado", SqlDbType.Bit)
+                        {
+                            Direction = ParameterDirection.Output
+                        };
+                        cmd.Parameters.Add(outputParam);
+
+                        con.Open();
+                        cmd.ExecuteNonQuery();
+                        respuesta = Convert.ToBoolean(outputParam.Value);
+                    }
+                }
+                return new Respuesta<bool>
+                {
+                    Estado = respuesta,
+                    Mensaje = respuesta ? "Se registro correctamente" : "Error al registrar ingrese otro nro de ci"
+                };
+            }
+            catch (Exception ex)
+            {
+                return new Respuesta<bool> { Estado = false, Mensaje = "Ocurrió un error: " + ex.Message };
+            }
+        }
+
+        public Respuesta<bool> EditarPacientes(EPaciente oPaciente)
+        {
+            try
+            {
+                bool respuesta = false;
+                using (SqlConnection con = ConexionBD.GetInstance().ConexionDB())
+                {
+                    using (SqlCommand cmd = new SqlCommand("usp_ModificarPacientes", con))
+                    {
+                        cmd.CommandType = CommandType.StoredProcedure;
+
+                        cmd.Parameters.AddWithValue("@IdPaciente", oPaciente.IdPaciente);
+                        cmd.Parameters.AddWithValue("@NroCi", oPaciente.NroCi);
+                        cmd.Parameters.AddWithValue("@Nombres", oPaciente.Nombres);
+                        cmd.Parameters.AddWithValue("@Apellidos", oPaciente.Apellidos);
+                        cmd.Parameters.AddWithValue("@FechaNacimiento", oPaciente.VFechaNacimiento);
+                        cmd.Parameters.AddWithValue("@Genero", oPaciente.Genero);
+                        cmd.Parameters.AddWithValue("@Telefono", oPaciente.Telefono);
+                        cmd.Parameters.AddWithValue("@Alergias", oPaciente.Alergias);
+
+                        SqlParameter outputParam = new SqlParameter("@Resultado", SqlDbType.Bit)
+                        {
+                            Direction = ParameterDirection.Output
+                        };
+                        cmd.Parameters.Add(outputParam);
+
+                        con.Open();
+                        cmd.ExecuteNonQuery();
+                        respuesta = Convert.ToBoolean(outputParam.Value);
+                    }
+                }
+                return new Respuesta<bool>
+                {
+                    Estado = respuesta,
+                    Mensaje = respuesta ? "Se actualizo correctamente" : "Error al actualizar ingrese otro nro de ci"
+                };
+            }
+            catch (Exception ex)
+            {
+                return new Respuesta<bool> { Estado = false, Mensaje = "Ocurrió un error: " + ex.Message };
+            }
+        }
+
         public Respuesta<List<EPaciente>> ObtenerPacientesFiltro(string Busqueda)
         {
             try

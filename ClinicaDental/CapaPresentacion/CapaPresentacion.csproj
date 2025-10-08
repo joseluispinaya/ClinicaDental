@@ -70,6 +70,7 @@
     <Content Include="css\sb-admin-2.css" />
     <Content Include="css\sb-admin-2.min.css" />
     <Content Include="Imagenes\odontologia.png" />
+    <Content Include="Imagenes\reporttf.png" />
     <Content Include="img\bienvenida.gif" />
     <Content Include="img\undraw_posting_photo.svg" />
     <Content Include="img\undraw_profile.svg" />
@@ -83,6 +84,8 @@
     <Content Include="jsdev\PageDoctores.js" />
     <Content Include="jsdev\PageListaCitas.js" />
     <Content Include="jsdev\PagePacientes.js" />
+    <Content Include="jsdev\PageReporteFecha.js" />
+    <Content Include="jsdev\PageServicios.js" />
     <Content Include="js\sb-admin-2.js" />
     <Content Include="js\sb-admin-2.min.js" />
     <Content Include="js\vistas\chart-bar-demo.js" />
@@ -93,6 +96,8 @@
     <Content Include="PageDoctores.aspx" />
     <Content Include="PageListaCitas.aspx" />
     <Content Include="PagePacientes.aspx" />
+    <Content Include="PageReporteFecha.aspx" />
+    <Content Include="PageServicios.aspx" />
     <Content Include="vendor\bootstrap\js\bootstrap.bundle.js" />
     <Content Include="vendor\bootstrap\js\bootstrap.bundle.min.js" />
     <Content Include="vendor\bootstrap\js\bootstrap.js" />
@@ -1783,6 +1788,7 @@
     <Content Include="vendor\jquery\jquery.min.js" />
     <Content Include="vendor\jquery\jquery.slim.js" />
     <Content Include="vendor\jquery\jquery.slim.min.js" />
+    <Content Include="vendor\jspdfzero\jspdfzero.js" />
     <Content Include="vendor\loadingoverlay\loadingoverlay.min.js" />
     <Content Include="vendor\select2\es.min.js" />
     <Content Include="vendor\select2\select2.min.css" />
@@ -1844,6 +1850,20 @@
     </Compile>
     <Compile Include="PagePacientes.aspx.designer.cs">
       <DependentUpon>PagePacientes.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="PageReporteFecha.aspx.cs">
+      <DependentUpon>PageReporteFecha.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PageReporteFecha.aspx.designer.cs">
+      <DependentUpon>PageReporteFecha.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="PageServicios.aspx.cs">
+      <DependentUpon>PageServicios.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PageServicios.aspx.designer.cs">
+      <DependentUpon>PageServicios.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

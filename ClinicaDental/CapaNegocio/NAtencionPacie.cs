@@ -32,5 +32,15 @@ namespace CapaNegocio
         {
             return DAtencionPacie.GetInstance().ObtenerAtencionPacie(IdAtencion);
         }
+
+        public Respuesta<List<EHistorialCli>> DetalleHistorialCli(int IdAtencion)
+        {
+            return DAtencionPacie.GetInstance().DetalleHistorialCli(IdAtencion);
+        }
+
+        public Respuesta<List<EReporteAtencion>> ReporteAtencFechas(string FechaInicio, string FechaFin)
+        {
+            return DAtencionPacie.GetInstance().ReporteAtencFechas(FechaInicio, FechaFin);
+        }
     }
 }

@@ -22,7 +22,7 @@ namespace CapaEntidad
 
         public EPaciente RefPaciente { get; set; }
         public EDoctor RefDoctor { get; set; }
-
+        public string FechaHoracita => $"{VFechaCita:dd/MM/yyyy} {HoraCita}";
         public string Color => Estado == "Confirmada"
             ? "#0061a9"
             : "#ff2301";

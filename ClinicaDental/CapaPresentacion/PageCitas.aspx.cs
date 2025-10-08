@@ -58,5 +58,25 @@ namespace CapaPresentacion
             }
         }
 
+        [WebMethod]
+        public static Respuesta<List<ECita>> ListadeCitasFull()
+        {
+            try
+            {
+                Respuesta<List<ECita>> Lista = NCita.GetInstance().ListadeCitasFull();
+                return Lista;
+            }
+            catch (Exception ex)
+            {
+                // Maneja cualquier error inesperado
+                return new Respuesta<List<ECita>>()
+                {
+                    Estado = false,
+                    Mensaje = "Error al obtener las citas: " + ex.Message,
+                    Data = null
+                };
+            }
+        }
+
     }
 }

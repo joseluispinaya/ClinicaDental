@@ -126,7 +126,6 @@ function detalleSolicit($idCita) {
                 $("#txtComentAtc").val(datos.Detalles);
 
 
-                // Validar estadoRese y habilitar o deshabilitar el botón
                 if (estadoRese) {
                     $("#btnGuardarAtencitt").prop("disabled", false).text("Generar Atención");
                 } else {
@@ -228,7 +227,7 @@ function registroCitas() {
     //IdDoctor: parseInt(cliente.IdDoctor),
     var modelo = {
         IdPaciente: parseInt($("#txtIdPaciente").val()),
-        IdDoctor: 1,
+        IdDoctor: 2,
         FechaCita: $("#txtFechaCita").val(),
         HoraCita: $("#timepicker2").val(),
         Detalles: $("#txtDetalle").val().trim()
@@ -355,7 +354,7 @@ function atenderLaCita() {
 $('#btnGuardarAtencitt').on('click', function () {
 
     $('#modalDetalleCi').modal('hide');
-    swal("Mensaje", "En desarrollo", "warning");
+    swal("Mensaje", "Atencion realizada", "warning");
 
     //const usuario = sessionStorage.getItem('usuarioIn');
 

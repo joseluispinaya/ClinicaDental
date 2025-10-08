@@ -48,6 +48,16 @@ namespace CapaNegocio
             return DPaciente.GetInstance().ObtenerTratamientosFiltro(Busqueda);
         }
 
+        public Respuesta<bool> RegistrarTratamiento(ETratamiento oTratamiento)
+        {
+            return DPaciente.GetInstance().RegistrarTratamiento(oTratamiento);
+        }
+
+        public Respuesta<bool> EditarTratamiento(ETratamiento oTratamiento)
+        {
+            return DPaciente.GetInstance().EditarTratamiento(oTratamiento);
+        }
+
         public Respuesta<List<ETratamiento>> ListaServicios()
         {
             return DPaciente.GetInstance().ListaServicios();

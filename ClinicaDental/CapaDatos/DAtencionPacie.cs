@@ -178,5 +178,111 @@ namespace CapaDatos
                 };
             }
         }
+
+        public Respuesta<List<EHistorialCli>> DetalleHistorialCli(int IdAtencion)
+        {
+            try
+            {
+                List<EHistorialCli> rptLista = new List<EHistorialCli>();
+
+                using (SqlConnection con = ConexionBD.GetInstance().ConexionDB())
+                {
+                    using (SqlCommand comando = new SqlCommand("sp_ObtenerDetalleHistoria", con))
+                    {
+                        comando.Parameters.AddWithValue("@IdAtencion", IdAtencion);
+                        comando.CommandType = CommandType.StoredProcedure;
+                        con.Open();
+
+                        using (SqlDataReader dr = comando.ExecuteReader())
+                        {
+                            while (dr.Read())
+                            {
+                                rptLista.Add(new EHistorialCli()
+                                {
+                                    IdHistorial = Convert.ToInt32(dr["IdHistorial"]),
+                                    RefTratamiento = new ETratamiento
+                                    {
+                                        Nombre = dr["Nombre"].ToString()
+                                    },
+                                    PrecioAplicado = Convert.ToDecimal(dr["PrecioAplicado"]),
+                                    Cantidad = Convert.ToInt32(dr["Cantidad"]),
+                                    ImporteTotal = Convert.ToDecimal(dr["ImporteTotal"])
+                                });
+                            }
+                        }
+                    }
+                }
+                return new Respuesta<List<EHistorialCli>>()
+                {
+                    Estado = true,
+                    Data = rptLista,
+                    Mensaje = "Lista obtenidos correctamente"
+                };
+            }
+            catch (Exception ex)
+            {
+                // Maneja cualquier error inesperado
+                return new Respuesta<List<EHistorialCli>>()
+                {
+                    Estado = false,
+                    Mensaje = "Ocurrió un error: " + ex.Message,
+                    Data = null
+                };
+            }
+        }
+
+        public Respuesta<List<EReporteAtencion>> ReporteAtencFechas(string FechaInicio, string FechaFin)
+        {
+            try
+            {
+                List<EReporteAtencion> rptLista = new List<EReporteAtencion>();
+
+                using (SqlConnection con = ConexionBD.GetInstance().ConexionDB())
+                {
+                    using (SqlCommand comando = new SqlCommand("sp_ReporteAtencionPac", con))
+                    {
+                        comando.Parameters.AddWithValue("@FechaInicio", FechaInicio);
+                        comando.Parameters.AddWithValue("@FechaFin", FechaFin);
+                        comando.CommandType = CommandType.StoredProcedure;
+                        con.Open();
+
+                        using (SqlDataReader dr = comando.ExecuteReader())
+                        {
+                            while (dr.Read())
+                            {
+                                rptLista.Add(new EReporteAtencion()
+                                {
+                                    IdAtencion = Convert.ToInt32(dr["IdAtencion"]),
+                                    Codigo = dr["Codigo"].ToString(),
+                                    NombrePaciente = dr["NombrePaciente"].ToString(),
+                                    NombreDoctor = dr["NombreDoctor"].ToString(),
+                                    PrecioTotal = Convert.ToDecimal(dr["PrecioTotal"]),
+                                    Descuento = Convert.ToDecimal(dr["Descuento"]),
+                                    Totalpagado = Convert.ToDecimal(dr["totalpagado"]),
+                                    FechaAtencion = dr["FechaAtencion"].ToString()
+
+                                });
+                            }
+                        }
+                    }
+                }
+                return new Respuesta<List<EReporteAtencion>>()
+                {
+                    Estado = true,
+                    Data = rptLista,
+                    Mensaje = "Lista obtenidos correctamente"
+                };
+            }
+            catch (Exception ex)
+            {
+                // Maneja cualquier error inesperado
+                return new Respuesta<List<EReporteAtencion>>()
+                {
+                    Estado = false,
+                    Mensaje = "Ocurrió un error: " + ex.Message,
+                    Data = null
+                };
+            }
+        }
     }
 }

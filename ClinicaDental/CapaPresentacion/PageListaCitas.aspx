@@ -193,6 +193,6 @@
     <script src="vendor/jquery-ui/jquery-ui.js"></script>
     <script src="vendor/jquery-ui/idioma/datepicker-es.js"></script>
 
-    <script src="jsdev/PageListaCitas.js?v=<%= DateTime.Now.ToString("yyyyMMddHHmmss") %>" type="text/javascript"></script>
-    <%--<script src="jsdev/PageListaCitas.js" type="text/javascript"></script>--%>
+    
+    <script src="jsdev/PageListaCitas.js" type="text/javascript"></script>
 </asp:Content>

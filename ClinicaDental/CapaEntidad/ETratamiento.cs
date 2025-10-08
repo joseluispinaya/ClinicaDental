@@ -13,5 +13,6 @@ namespace CapaEntidad
         public string Descripcion { get; set; }
         public decimal Precio { get; set; }
         public bool Estado { get; set; }
+        public string PrecioStr => Precio.ToString("0.00") + " /BS";
     }
 }

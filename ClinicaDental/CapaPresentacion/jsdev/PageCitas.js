@@ -1,46 +1,64 @@
 ﻿
-function ObtenerFechaA() {
-    const d = new Date();
-    const month = (d.getMonth() + 1).toString().padStart(2, '0');
-    const day = d.getDate().toString().padStart(2, '0');
-    return `${day}/${month}/${d.getFullYear()}`;
-}
+var table;
 
 $(document).ready(function () {
-    $.datepicker.setDefaults($.datepicker.regional["es"])
-    $("#txtFechaCita").datepicker({ dateFormat: "dd/mm/yy" });
-    $("#txtFechaCita").val(ObtenerFechaA());
 
-    $('#calendar').fullCalendar({
-        header: {
-            left: 'prev,next today',
-            center: 'title',
-            right: 'month, basicWeek, basicDay'
-        }
-    });
-
-    $('#timepicker2').timepicker({ showMeridian: false });
-    cargarListaPaci();
-    cargarPacientesFil();
-
+    //$('#calendar').fullCalendar({
+    //    header: {
+    //        left: 'prev,next today',
+    //        center: 'title',
+    //        right: 'month, basicWeek, basicDay'
+    //    }
+    //});
+    listaCitasFull();
+    cargarCitasCalendarFull();
 })
 
-function cargarListaPaci() {
+function cargarCitasCalendarFull() {
 
     $.ajax({
         type: "POST",
-        url: "PageCitas.aspx/ListaPacientes",
+        url: "PageCitas.aspx/ListadeCitasFull",
         data: {},
-        contentType: 'application/json; charset=utf-8',
         dataType: "json",
+        contentType: 'application/json; charset=utf-8',
         error: function (xhr, ajaxOptions, thrownError) {
             console.log(xhr.status + " \n" + xhr.responseText, "\n" + thrownError);
         },
         success: function (response) {
             if (response.d.Estado) {
+                var events = [];
 
-                console.log(response.d.Data);
-                //console.log(response);
+                $.each(response.d.Data, function (i, row) {
+                    var fechaHora = row.FechaCita + 'T' + row.HoraCita;
+
+                    events.push({
+                        id: row.IdCita,
+                        title: row.Estado,
+                        start: fechaHora,
+                        medico: row.RefDoctor.Nombres,
+                        citah: row.FechaHoracita,
+                        color: row.Color,
+                        textColor: 'white'
+                    });
+                });
+
+                $('#calendar').fullCalendar('destroy');
+                $('#calendar').fullCalendar({
+                    header: {
+                        left: 'prev,next today',
+                        center: 'title',
+                        right: 'month, basicWeek, basicDay'
+                    },
+                    editable: true,
+                    events: events,
+                    eventClick: function (calEvent, jsEvent, view) {
+                        var doc = calEvent.medico;
+                        var ci = calEvent.citah;
+                        //swal("Mensaje", "Aqui un evento", "warning");
+                        swal("Mensaje", "Cita para: " + ci + "\nMedico: " + doc, "success");
+                    }
+                });
             } else {
                 swal("Mensaje", response.d.Mensaje, "warning");
             }
@@ -48,79 +66,50 @@ function cargarListaPaci() {
         }
     });
 }
-function cargarPacientesFil() {
 
-    $("#cboBuscarPaciente").select2({
-        ajax: {
-            url: "PageCitas.aspx/ObtenerPacientesFiltro",
-            dataType: 'json',
-            type: "POST",
-            contentType: "application/json; charset=utf-8",
-            delay: 250,
-            data: function (params) {
-                return JSON.stringify({ busqueda: params.term });
-            },
-            processResults: function (data) {
+function listaCitasFull() {
+    if ($.fn.DataTable.isDataTable("#tbCitasAdmin")) {
+        $("#tbCitasAdmin").DataTable().destroy();
+        $('#tbCitasAdmin tbody').empty();
+    }
 
-                return {
-                    results: data.d.Data.map((item) => ({
-                        id: item.IdPaciente,
-                        NroCi: item.NroCi,
-                        text: item.Nombres,
-                        Apellidos: item.Apellidos,
-                        paciente: item
-                    }))
-                };
+    table = $("#tbCitasAdmin").DataTable({
+        responsive: true,
+        "ajax": {
+            "url": 'PageCitas.aspx/ListadeCitasFull',
+            "type": "POST", // Cambiado a POST
+            "contentType": "application/json; charset=utf-8",
+            "dataType": "json",
+            "data": function (d) {
+                return JSON.stringify(d);
             },
-            error: function (xhr, ajaxOptions, thrownError) {
-                console.log(xhr.status + " \n" + xhr.responseText, "\n" + thrownError);
+            "dataSrc": function (json) {
+                //console.log("Response from server:", json.d.objeto);
+                if (json.d.Estado) {
+                    return json.d.Data; // Asegúrate de que esto apunta al array de datos
+                } else {
+                    return [];
+                }
             }
         },
-        language: "es",
-        placeholder: 'Buscar Paciente',
-        minimumInputLength: 1,
-        templateResult: formatoRes
+        "columns": [
+            { "data": "IdCita", "visible": false, "searchable": false },
+            { "data": "RefPaciente.Nombres" },
+            { "data": "RefDoctor.Nombres" },
+            { "data": "FechaHoracita" },
+            { "data": "Estado" },
+            { "data": "FechaRegistro" },
+            {
+                "defaultContent": '<button class="btn btn-primary btn-detalle btn-sm"><i class="fas fa-pencil-alt"></i></button>',
+                "orderable": false,
+                "searchable": false,
+                "width": "40px"
+            }
+        ],
+        "order": [[0, "desc"]],
+        "language": {
+            "url": "https://cdn.datatables.net/plug-ins/1.11.5/i18n/es-ES.json"
+        }
     });
 }
-
-function formatoRes(data) {
-
-    var imagenes = "Imagenes/odontologia.png";
-    // Esto es por defecto, ya que muestra el "buscando..."
-    if (data.loading)
-        return data.text;
-
-    var contenedor = $(
-        `<table width="100%">
-            <tr>
-                <td style="width:60px">
-                    <img style="height:60px;width:60px;margin-right:10px" src="${imagenes}"/>
-                </td>
-                <td>
-                    <p style="font-weight: bolder;margin:2px">${data.text} ${data.Apellidos}</p>
-                    <p style="margin:2px">${data.NroCi}</p>
-                </td>
-            </tr>
-        </table>`
-    );
-
-    return contenedor;
-}
-
-$(document).on("select2:open", function () {
-    document.querySelector(".select2-search__field").focus();
-
-});
-
-// Evento para manejar la selección del cliente
-$("#cboBuscarPaciente").on("select2:select", function (e) {
-
-    var data = e.params.data.paciente;
-    $("#txtIdPaciente").val(data.IdPaciente);
-    $("#txtNombrePac").val(data.Nombres + " " + data.Apellidos);
-    $("#txtNroci").val(data.NroCi);
-    $("#txtAlergia").val(data.Alergias);
-
-    $("#cboBuscarPaciente").val("").trigger("change")
-    //console.log(data);
-});
+// fin

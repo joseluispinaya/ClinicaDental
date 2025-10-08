@@ -1,96 +1,77 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/HomePage.Master" AutoEventWireup="true" CodeBehind="PageCitas.aspx.cs" Inherits="CapaPresentacion.PageCitas" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
-    <link href="vendor/timepicker/bootstrap-timepicker.min.css" rel="stylesheet"/>
-    <link href="vendor/select2/select2.min.css" rel="stylesheet">
     <link href="vendor/calen/fullcalendar.min.css" rel="stylesheet"/>
-    <link href="vendor/jquery-ui/jquery-ui.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@mdi/font@7.4.47/css/materialdesignicons.min.css">
-    <style>
-        .select2 {
-            width: 100% !important;
-        }
-        #timepicker2 {
-            text-align: center;
-        }
-        #txtFechaCita {
-            text-align: center;
-        }
-    </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="body" runat="server">
-    <h6 class="mb-3 font-weight-bold text-primary">Registro de citas</h6>
+    <div class="card shadow">
+    <div class="card-header bg-second-primary">
+        <h6 class="m-0 font-weight-bold text-white">Lista de Citas Agendadas</h6>
+    </div>
+    <div class="card-body">
+        <div class="row">
+            <div class="col-sm-12">
+                <!-- Nav tabs -->
+                <ul class="nav nav-tabs nav-justified" role="tablist">
+                    <li class="nav-item">
+                        <a class="nav-link active" id="home-tab-2" data-toggle="tab" href="#home-2" role="tab"
+                            aria-controls="home-2" aria-selected="true">
+                            <span class="d-block d-sm-none"><i class="fa fa-home"></i></span>
+                            <span class="d-none d-sm-block">Agenda de citas</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" id="profile-tab-2" data-toggle="tab" href="#profile-2" role="tab"
+                            aria-controls="profile-2" aria-selected="false">
+                            <span class="d-block d-sm-none"><i class="fa fa-user"></i></span>
+                            <span class="d-none d-sm-block">Lista de Citas</span>
+                        </a>
+                    </li>
+                </ul>
 
-    <div class="row">
-        <div class="col-sm-12">
-            <div class="card">
-                <div class="card-body">
-                    <input type="hidden" value="0" id="txtIdPaciente">
-                    <div class="form-row align-items-end">
-                        <div class="form-group col-sm-3">
-                            <label for="cboBuscarPaciente">Buscar Paciente</label>
-                            <select class="form-control form-control-sm" id="cboBuscarPaciente">
-                                <option value=""></option>
-                            </select>
-                        </div>
-                        <div class="form-group col-sm-3">
-                            <label for="txtNombrePac">Nombre</label>
-                            <input type="text" class="form-control form-control-sm" id="txtNombrePac" disabled>
-                        </div>
-                        <div class="form-group col-sm-3">
-                            <label for="txtNroci">Nro CI</label>
-                            <input type="text" class="form-control form-control-sm" id="txtNroci" disabled>
-                        </div>
-                        <div class="form-group col-sm-3">
-                            <label for="txtAlergia">Alergias</label>
-                            <input type="text" class="form-control form-control-sm" id="txtAlergia" disabled>
+                <!-- Tab panes -->
+                <div class="tab-content p-3" style="background-color: #fff; border: 1px solid #eeeeee;">
+                    <div class="tab-pane fade show active" id="home-2" role="tabpanel" aria-labelledby="home-tab-2">
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <div id="calendar"></div>
+                            </div>
                         </div>
                     </div>
-
-                    <div class="form-row align-items-end">
-                        <div class="form-group col-sm-3">
-                            <label for="txtFechaCita">Fecha Cita</label>
-                            <input type="text" class="form-control form-control-sm" id="txtFechaCita">
-                        </div>
-                        <div class="form-group col-sm-2">
-                            <label for="timepicker2">Hora Cita</label>
-                            <input type="text" class="form-control form-control-sm" id="timepicker2">
-                        </div>
-                        <div class="form-group col-sm-5">
-                            <label for="txtDetalle">Comentario</label>
-                            <input type="text" class="form-control form-control-sm" id="txtDetalle">
-                        </div>
-                        <div class="form-group col-sm-2">
-                            <button type="button" class="btn btn-success btn-block btn-sm" id="btnGuardarCit"><i class="fas fa-plus-circle mr-2"></i>Registrar</button>
+                    <div class="tab-pane fade" id="profile-2" role="tabpanel" aria-labelledby="profile-tab-2">
+                        <h6 class="mb-3 font-weight-bold text-primary">Registro de citas</h6>
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <table class="table table-sm table-striped" id="tbCitasAdmin" cellspacing="0" style="width: 100%">
+                                    <thead>
+                                        <tr>
+                                            <th>Id</th>
+                                            <th>Paciente</th>
+                                            <th>Medico</th>
+                                            <th>Cita</th>
+                                            <th>Estado</th>
+                                            <th>Registrado</th>
+                                            <th></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                    </tbody>
+                                </table>
+                        
+                            </div>
                         </div>
                     </div>
-
                 </div>
             </div>
         </div>
     </div>
-    <hr/>
-    <div class="row">
-        <div class="col-sm-12">
-            <div class="card">
-                <div class="card-body">
-                    <div id="calendar"></div>
-                </div>
-            </div>
-        </div>
-    </div>
+</div>
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="footer" runat="server">
-    <script src="vendor/timepicker/bootstrap-timepicker.js"></script>
-
-    <script src="vendor/select2/select2.min.js"></script>
-    <script src="vendor/select2/es.min.js"></script>
 
     <script src="vendor/calen/moment.min.js"></script>
     <script src="vendor/calen/fullcalendar.min.js"></script>
     <script src="vendor/calen/es.js"></script>
 
-    <script src="vendor/jquery-ui/jquery-ui.js"></script>
-    <script src="vendor/jquery-ui/idioma/datepicker-es.js"></script>
-
-    <script src="jsdev/PageCitas.js" type="text/javascript"></script>
+    <script src="jsdev/PageCitas.js?v=<%= DateTime.Now.ToString("yyyyMMddHHmmss") %>" type="text/javascript"></script>
+    <%--<script src="jsdev/PageCitas.js" type="text/javascript"></script>--%>
 </asp:Content>

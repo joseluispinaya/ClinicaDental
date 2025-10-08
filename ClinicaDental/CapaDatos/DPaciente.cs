@@ -268,6 +268,86 @@ namespace CapaDatos
             }
         }
 
+        // crud tratamientos
+
+        public Respuesta<bool> RegistrarTratamiento(ETratamiento oTratamiento)
+        {
+            try
+            {
+                bool respuesta = false;
+                using (SqlConnection con = ConexionBD.GetInstance().ConexionDB())
+                {
+                    using (SqlCommand cmd = new SqlCommand("usp_RegistrarTratamientos", con))
+                    {
+                        cmd.CommandType = CommandType.StoredProcedure;
+
+                        cmd.Parameters.AddWithValue("@Nombre", oTratamiento.Nombre);
+                        cmd.Parameters.AddWithValue("@Descripcion", oTratamiento.Descripcion);
+                        cmd.Parameters.AddWithValue("@Precio", oTratamiento.Precio);
+
+                        SqlParameter outputParam = new SqlParameter("@Resultado", SqlDbType.Bit)
+                        {
+                            Direction = ParameterDirection.Output
+                        };
+                        cmd.Parameters.Add(outputParam);
+
+                        con.Open();
+                        cmd.ExecuteNonQuery();
+                        respuesta = Convert.ToBoolean(outputParam.Value);
+                    }
+                }
+                return new Respuesta<bool>
+                {
+                    Estado = respuesta,
+                    Mensaje = respuesta ? "Se registro correctamente" : "Error al registrar intente mas tarde"
+                };
+            }
+            catch (Exception ex)
+            {
+                return new Respuesta<bool> { Estado = false, Mensaje = "Ocurrió un error: " + ex.Message };
+            }
+        }
+
+        public Respuesta<bool> EditarTratamiento(ETratamiento oTratamiento)
+        {
+            try
+            {
+                bool respuesta = false;
+                using (SqlConnection con = ConexionBD.GetInstance().ConexionDB())
+                {
+                    using (SqlCommand cmd = new SqlCommand("usp_ModificarTratamientos", con))
+                    {
+                        cmd.CommandType = CommandType.StoredProcedure;
+
+                        cmd.Parameters.AddWithValue("@IdTratamiento", oTratamiento.IdTratamiento);
+                        cmd.Parameters.AddWithValue("@Nombre", oTratamiento.Nombre);
+                        cmd.Parameters.AddWithValue("@Descripcion", oTratamiento.Descripcion);
+                        cmd.Parameters.AddWithValue("@Precio", oTratamiento.Precio);
+                        cmd.Parameters.AddWithValue("@Estado", oTratamiento.Estado);
+
+                        SqlParameter outputParam = new SqlParameter("@Resultado", SqlDbType.Bit)
+                        {
+                            Direction = ParameterDirection.Output
+                        };
+                        cmd.Parameters.Add(outputParam);
+
+                        con.Open();
+                        cmd.ExecuteNonQuery();
+                        respuesta = Convert.ToBoolean(outputParam.Value);
+                    }
+                }
+                return new Respuesta<bool>
+                {
+                    Estado = respuesta,
+                    Mensaje = respuesta ? "Se actualizo correctamente" : "Error al actualizar intente mas tarde"
+                };
+            }
+            catch (Exception ex)
+            {
+                return new Respuesta<bool> { Estado = false, Mensaje = "Ocurrió un error: " + ex.Message };
+            }
+        }
+
         public Respuesta<List<ETratamiento>> ListaServicios()
         {
             try

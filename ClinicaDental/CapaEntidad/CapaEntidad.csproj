@@ -46,6 +46,7 @@
     <Compile Include="EDoctor.cs" />
     <Compile Include="EHistorialCli.cs" />
     <Compile Include="EPaciente.cs" />
+    <Compile Include="EReporteAtencion.cs" />
     <Compile Include="ETratamiento.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Respuesta.cs" />

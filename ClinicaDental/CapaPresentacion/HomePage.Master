@@ -73,7 +73,7 @@
                 <div id="collapseAdministracion" class="collapse" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <a class="collapse-item" href="PageDoctores.aspx">Doctores</a>
-                        <a class="collapse-item" href="#">Servicios</a>
+                        <a class="collapse-item" href="PageServicios.aspx">Servicios</a>
                     </div>
                 </div>
             </li>
@@ -114,7 +114,8 @@
                 </a>
                 <div id="collapseReportes" class="collapse" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
-                        <a class="collapse-item" href="#">Reporte de Ventas</a>
+                        <a class="collapse-item" href="PageReporteFecha.aspx">Reporte Fechas</a>
+                        <a class="collapse-item" href="#">Atencion por Doctor</a>
                     </div>
                 </div>
             </li>

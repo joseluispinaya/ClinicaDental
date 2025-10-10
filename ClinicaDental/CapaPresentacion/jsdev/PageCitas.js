@@ -98,13 +98,7 @@ function listaCitasFull() {
             { "data": "RefDoctor.Nombres" },
             { "data": "FechaHoracita" },
             { "data": "Estado" },
-            { "data": "FechaRegistro" },
-            {
-                "defaultContent": '<button class="btn btn-primary btn-detalle btn-sm"><i class="fas fa-pencil-alt"></i></button>',
-                "orderable": false,
-                "searchable": false,
-                "width": "40px"
-            }
+            { "data": "FechaRegistro" }
         ],
         "order": [[0, "desc"]],
         "language": {

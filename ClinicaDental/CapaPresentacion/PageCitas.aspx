@@ -50,7 +50,6 @@
                                             <th>Cita</th>
                                             <th>Estado</th>
                                             <th>Registrado</th>
-                                            <th></th>
                                         </tr>
                                     </thead>
                                     <tbody>

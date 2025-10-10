@@ -101,7 +101,7 @@
                 <div id="collapseVenta" class="collapse" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <a class="collapse-item" href="PageAtencion.aspx">Nueva Atencion</a>
-                        <a class="collapse-item" href="#">Historial Atencion</a>
+                        <a class="collapse-item" href="PageHistorial.aspx">Historial Clinico</a>
                     </div>
                 </div>
             </li>
@@ -154,7 +154,7 @@
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <span class="mr-2 d-none d-lg-inline text-gray-600 small" id="nomUserg">Douglas McGee</span>
                                 <img class="img-profile rounded-circle" id="imgUsumast"
-                                    src="https://images.unsplash.com/photo-1519648023493-d82b5f8d7b8a?w=300">
+                                    src="Imagenes/odontologia.png">
                             </a>
                             <!-- Dropdown - User Information -->
                             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
@@ -226,6 +226,7 @@
     <script src="vendor/datatables/extensiones/js/jszip.min.js"></script>
     <script src="vendor/datatables/extensiones/js/buttons.html5.min.js"></script>
     <script src="vendor/datatables/extensiones/js/buttons.print.min.js"></script>
+    <script src="jsdev/Masterpa.js" type="text/javascript"></script>
 
     <asp:ContentPlaceHolder ID="footer" runat="server"></asp:ContentPlaceHolder>
 </body>

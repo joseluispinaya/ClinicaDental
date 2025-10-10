@@ -19,6 +19,8 @@ namespace CapaEntidad
         public DateTime VFechaAtencion { get; set; }
         public EPaciente RefPaciente { get; set; }
         public EDoctor RefDoctor { get; set; }
+        // recien agrgado
+        //public decimal Totalpagado { get; set; }
         public List<EHistorialCli> ListaHistorialCli { get; set; }
         public string PrecioTotStr => PrecioTotal.ToString("0.00") + " /BS";
         public string PrecioDescStr => Descuento.ToString("0.00") + " /BS";

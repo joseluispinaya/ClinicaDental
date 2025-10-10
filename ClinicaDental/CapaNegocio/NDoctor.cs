@@ -37,5 +37,10 @@ namespace CapaNegocio
         {
             return DDoctor.GetInstance().ListaDoctores();
         }
+
+        public Respuesta<EDoctor> LoginUsuario(string Correo, string Clave)
+        {
+            return DDoctor.GetInstance().LoginUsuario(Correo, Clave);
+        }
     }
 }

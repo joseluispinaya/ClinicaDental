@@ -42,12 +42,12 @@ function cargarCitasCalendar() {
 
     //const usuario = JSON.parse(sessionStorage.getItem('usuarioIn'));
     //var request = { IdInmobi: usuario.IdInmobiliaria }
-    var request = { IdDoctor: 1 }
+    //var request = { IdDoctor: 1 }
 
     $.ajax({
         type: "POST",
-        url: "PageListaCitas.aspx/ObtenerCitasPorDoctor",
-        data: JSON.stringify(request),
+        url: "PageCitas.aspx/ListadeCitasFull",
+        data: {},
         dataType: "json",
         contentType: 'application/json; charset=utf-8',
         error: function (xhr, ajaxOptions, thrownError) {
@@ -223,11 +223,12 @@ $("#cboBuscarPaciente").on("select2:select", function (e) {
 
 function registroCitas() {
 
+    const usuariocl = JSON.parse(sessionStorage.getItem('usuarioCli'));
     //const cliente = JSON.parse(sessionStorage.getItem('clienteIn'));
-    //IdDoctor: parseInt(cliente.IdDoctor),
+    //IdDoctor: parseInt(usuariocl.IdDoctor),
     var modelo = {
         IdPaciente: parseInt($("#txtIdPaciente").val()),
-        IdDoctor: 2,
+        IdDoctor: parseInt(usuariocl.IdDoctor),
         FechaCita: $("#txtFechaCita").val(),
         HoraCita: $("#timepicker2").val(),
         Detalles: $("#txtDetalle").val().trim()

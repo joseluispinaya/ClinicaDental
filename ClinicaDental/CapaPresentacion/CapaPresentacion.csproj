@@ -67,11 +67,14 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="css\logincli.css" />
     <Content Include="css\sb-admin-2.css" />
     <Content Include="css\sb-admin-2.min.css" />
     <Content Include="Imagenes\odontologia.png" />
     <Content Include="Imagenes\reporttf.png" />
     <Content Include="img\bienvenida.gif" />
+    <Content Include="img\fondo.jpg" />
+    <Content Include="img\odontologia.png" />
     <Content Include="img\undraw_posting_photo.svg" />
     <Content Include="img\undraw_profile.svg" />
     <Content Include="img\undraw_profile_1.svg" />
@@ -79,9 +82,12 @@
     <Content Include="img\undraw_profile_3.svg" />
     <Content Include="img\undraw_rocket.svg" />
     <Content Include="Inicio.aspx" />
+    <Content Include="jsdev\Login.js" />
+    <Content Include="jsdev\Masterpa.js" />
     <Content Include="jsdev\PageAtencion.js" />
     <Content Include="jsdev\PageCitas.js" />
     <Content Include="jsdev\PageDoctores.js" />
+    <Content Include="jsdev\PageHistorial.js" />
     <Content Include="jsdev\PageListaCitas.js" />
     <Content Include="jsdev\PagePacientes.js" />
     <Content Include="jsdev\PageReporteFecha.js" />
@@ -91,9 +97,11 @@
     <Content Include="js\vistas\chart-bar-demo.js" />
     <Content Include="js\vistas\chart-pie-demo.js" />
     <Content Include="js\vistas\datatables-demo.js" />
+    <Content Include="Login.aspx" />
     <Content Include="PageAtencion.aspx" />
     <Content Include="PageCitas.aspx" />
     <Content Include="PageDoctores.aspx" />
+    <Content Include="PageHistorial.aspx" />
     <Content Include="PageListaCitas.aspx" />
     <Content Include="PagePacientes.aspx" />
     <Content Include="PageReporteFecha.aspx" />
@@ -1816,6 +1824,13 @@
     <Compile Include="Inicio.aspx.designer.cs">
       <DependentUpon>Inicio.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Login.aspx.cs">
+      <DependentUpon>Login.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Login.aspx.designer.cs">
+      <DependentUpon>Login.aspx</DependentUpon>
+    </Compile>
     <Compile Include="PageAtencion.aspx.cs">
       <DependentUpon>PageAtencion.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -1836,6 +1851,13 @@
     </Compile>
     <Compile Include="PageDoctores.aspx.designer.cs">
       <DependentUpon>PageDoctores.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="PageHistorial.aspx.cs">
+      <DependentUpon>PageHistorial.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PageHistorial.aspx.designer.cs">
+      <DependentUpon>PageHistorial.aspx</DependentUpon>
     </Compile>
     <Compile Include="PageListaCitas.aspx.cs">
       <DependentUpon>PageListaCitas.aspx</DependentUpon>

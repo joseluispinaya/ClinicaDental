@@ -167,5 +167,71 @@ namespace CapaDatos
                 };
             }
         }
+
+        public Respuesta<EDoctor> LoginUsuario(string Correo, string Clave)
+        {
+            try
+            {
+                EDoctor obj = null;
+
+                using (SqlConnection con = ConexionBD.GetInstance().ConexionDB())
+                {
+                    using (SqlCommand comando = new SqlCommand("usp_LogeoUsuarios", con))
+                    {
+                        comando.CommandType = CommandType.StoredProcedure;
+                        //comando.CommandTimeout = 30;
+                        comando.Parameters.AddWithValue("@Correo", Correo);
+                        comando.Parameters.AddWithValue("@ClaveHash", Clave);
+
+                        con.Open();
+                        using (SqlDataReader dr = comando.ExecuteReader())
+                        {
+                            if (dr.Read())
+                            {
+                                obj = new EDoctor
+                                {
+                                    IdDoctor = Convert.ToInt32(dr["IdDoctor"]),
+                                    NroCi = dr["NroCi"].ToString(),
+                                    Nombres = dr["Nombres"].ToString(),
+                                    Apellidos = dr["Apellidos"].ToString(),
+                                    Telefono = dr["Telefono"].ToString(),
+                                    Correo = dr["Correo"].ToString(),
+                                    ClaveHash = dr["ClaveHash"].ToString(),
+                                    Token = dr["Token"].ToString(),
+                                    Estado = Convert.ToBoolean(dr["Estado"]),
+                                };
+                            }
+                        }
+                    }
+                }
+
+                return new Respuesta<EDoctor>
+                {
+                    Estado = obj != null,
+                    Data = obj,
+                    Mensaje = obj != null ? "Usuario obtenido correctamente" : "Credenciales incorrectas o usuario no encontrado"
+                };
+            }
+            catch (SqlException ex)
+            {
+                // Manejo de excepciones relacionadas con la base de datos
+                return new Respuesta<EDoctor>
+                {
+                    Estado = false,
+                    Mensaje = "Error en la base de datos: " + ex.Message,
+                    Data = null
+                };
+            }
+            catch (Exception ex)
+            {
+                // Manejo de excepciones generales
+                return new Respuesta<EDoctor>
+                {
+                    Estado = false,
+                    Mensaje = "Ocurrió un error inesperado: " + ex.Message,
+                    Data = null
+                };
+            }
+        }
     }
 }

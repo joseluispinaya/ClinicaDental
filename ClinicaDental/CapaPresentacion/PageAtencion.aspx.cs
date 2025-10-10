@@ -95,7 +95,19 @@ namespace CapaPresentacion
 
                 // Llamar a RegistrarActivo en la capa de negocio y recibir la respuesta
                 Respuesta<int> respuesta = NAtencionPacie.GetInstance().RegistrarAtencion(activoa.ToString());
+                // aqui cambiar estado a la cita si hay
+                if (respuesta.Estado)
+                {
+                    Respuesta<List<ECita>> Lista = NCita.GetInstance().ListadeCitasFull();
+                    var listaCitas = Lista.Data;
+                    var objCita = listaCitas.FirstOrDefault(x => x.IdPaciente == eAtencionPa.IdPaciente && x.Activo);
+                    if (objCita != null)
+                    {
+                        var act = NCita.GetInstance().CambiarEstadoCita(objCita.IdCita);
+                    }
+                }
                 return respuesta;
+
             }
             catch (Exception ex)
             {

@@ -268,6 +268,57 @@ namespace CapaDatos
             }
         }
 
+        public Respuesta<List<EReporteAtencion>> DetalleAtencionPaciente(int IdPaciente)
+        {
+            try
+            {
+                List<EReporteAtencion> rptLista = new List<EReporteAtencion>();
+
+                using (SqlConnection con = ConexionBD.GetInstance().ConexionDB())
+                {
+                    using (SqlCommand comando = new SqlCommand("sp_ObtenerListaAtencionPaci", con))
+                    {
+                        comando.Parameters.AddWithValue("@IdPaciente", IdPaciente);
+                        comando.CommandType = CommandType.StoredProcedure;
+                        con.Open();
+
+                        using (SqlDataReader dr = comando.ExecuteReader())
+                        {
+                            while (dr.Read())
+                            {
+                                rptLista.Add(new EReporteAtencion()
+                                {
+                                    IdAtencion = Convert.ToInt32(dr["IdAtencion"]),
+                                    Codigo = dr["Codigo"].ToString(),
+                                    NombreDoctor = dr["NombreDoctor"].ToString(),
+                                    PrecioTotal = Convert.ToDecimal(dr["PrecioTotal"]),
+                                    Descuento = Convert.ToDecimal(dr["Descuento"]),
+                                    Totalpagado = Convert.ToDecimal(dr["totalpagado"]),
+                                    FechaAtencion = dr["FechaAtencion"].ToString(),
+                                });
+                            }
+                        }
+                    }
+                }
+                return new Respuesta<List<EReporteAtencion>>()
+                {
+                    Estado = true,
+                    Data = rptLista,
+                    Mensaje = "Lista obtenidos correctamente"
+                };
+            }
+            catch (Exception ex)
+            {
+                // Maneja cualquier error inesperado
+                return new Respuesta<List<EReporteAtencion>>()
+                {
+                    Estado = false,
+                    Mensaje = "Ocurrió un error: " + ex.Message,
+                    Data = null
+                };
+            }
+        }
+
         // crud tratamientos
 
         public Respuesta<bool> RegistrarTratamiento(ETratamiento oTratamiento)

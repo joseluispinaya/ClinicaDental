@@ -449,10 +449,13 @@ function registrarAtencion() {
     );
     const descuentoFixed = parseFloat(descuento.toFixed(2));
 
+    const usuariocl = JSON.parse(sessionStorage.getItem('usuarioCli'));
+    //var request = { IdInmobi: usuariocl.IdDoctor }
+
     var request = {
         eAtencionPa: {
             IdPaciente: $("#txtIdPaciente").val(),
-            IdDoctor: 1,
+            IdDoctor: parseInt(usuariocl.IdDoctor),
             PrecioTotal: total,
             Descuento: descuentoFixed
         },

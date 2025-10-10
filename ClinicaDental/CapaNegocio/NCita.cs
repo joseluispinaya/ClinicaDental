@@ -42,5 +42,11 @@ namespace CapaNegocio
         {
             return DCita.GetInstance().DetalleCitaId(IdCita);
         }
+
+        public Respuesta<bool> CambiarEstadoCita(int IdCita)
+        {
+            return DCita.GetInstance().CambiarEstadoCita(IdCita);
+        }
+
     }
 }
